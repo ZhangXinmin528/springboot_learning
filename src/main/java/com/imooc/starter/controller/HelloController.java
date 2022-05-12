@@ -1,7 +1,9 @@
 package com.imooc.starter.controller;
 
 import com.imooc.starter.entity.Config;
+import com.imooc.starter.entity.Employee;
 import com.imooc.starter.entity.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 //@Controller
 @RestController //相当于Controller+ResposeBody
+@Slf4j
 public class HelloController {
 
     //1.基本使用
@@ -57,5 +60,16 @@ public class HelloController {
     @GetMapping("getCustomConfig")
     public String getCustomConfig() {
         return "sdkKey:" + sdkKey + ";\nhost:" + host + ";\nport:" + port;
+    }
+
+    //5.lombok插件提升开发效率
+    @GetMapping("getEmployee")
+    public Employee getEmployee() {
+        final Employee employee = new Employee();
+        employee.setId(1001);
+        employee.setDepartment("人力");
+        log.info(employee.toString());
+        log.error(employee.toString());
+        return employee;
     }
 }

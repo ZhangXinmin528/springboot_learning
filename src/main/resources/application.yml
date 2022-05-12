@@ -2,6 +2,9 @@ server:
   port: 8090
 
 spring:
+  # 注掉下面代码，则项目首页为：index.html
+  #  mvc:
+  #    static-path-pattern: /learning/** #设置静态资源前缀
   banner:
     location: classpath:banner.txt
   #自定义图片Banner

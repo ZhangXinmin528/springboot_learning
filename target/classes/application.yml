@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+spring:
+  banner:
+    location: classpath:banner.txt
+  #自定义图片Banner
+#    image:
+#      location: classpath:banner/pay.jpeg
+#      pixelmode: text
+
+#自定义配置
+self:
+  custom:
+    config:
+      sdkKey: abc123
+      host: https://blog.csdn.net/zxm528
+      port: ${server.port} #类似功能获取基本配置信息

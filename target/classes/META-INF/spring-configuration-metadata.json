@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "user",
+      "type": "com.imooc.starter.entity.Config",
+      "sourceType": "com.imooc.starter.entity.Config"
+    }
+  ],
+  "properties": [
+    {
+      "name": "user.age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.imooc.starter.entity.Config",
+      "defaultValue": 0
+    },
+    {
+      "name": "user.sex",
+      "type": "java.lang.String",
+      "sourceType": "com.imooc.starter.entity.Config"
+    },
+    {
+      "name": "user.user-name",
+      "type": "java.lang.String",
+      "sourceType": "com.imooc.starter.entity.Config"
+    }
+  ],
+  "hints": []
+}

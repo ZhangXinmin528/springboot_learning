@@ -3,14 +3,16 @@ package com.imooc.starter.controller;
 import com.imooc.starter.entity.Config;
 import com.imooc.starter.entity.Employee;
 import com.imooc.starter.entity.Student;
+import com.imooc.starter.utils.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by ZhangXinmin on zhangxinmin.
@@ -71,5 +73,27 @@ public class HelloController {
         log.info(employee.toString());
         log.error(employee.toString());
         return employee;
+    }
+
+    //6.返回响应对象
+    @GetMapping("getEmployeeResult")
+    public JsonResult getEmployeeResult() {
+        final Employee employee = new Employee();
+        employee.setId(1001);
+        employee.setDepartment("人力");
+        log.info(employee.toString());
+        log.error(employee.toString());
+        return JsonResult.success(employee);
+    }
+
+    //7.文件上-有问题
+    @PostMapping("upload")
+    public JsonResult upload(MultipartFile file) {
+        try {
+            file.transferTo(new File("/temp/" + file.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return JsonResult.success(null);
     }
 }

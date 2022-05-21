@@ -3,6 +3,7 @@ package com.imooc.starter.controller;
 import com.imooc.starter.entity.Config;
 import com.imooc.starter.entity.Employee;
 import com.imooc.starter.entity.Student;
+import com.imooc.starter.utils.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -74,4 +75,11 @@ public class StudentController {
         return "删除信息";
     }
 
+
+    //6.返回响应对象
+    @GetMapping("getStudentInfo")
+    public JsonResult getStudentInfo() {
+        final Student student = new Student("jack", 22);
+        return JsonResult.success(student);
+    }
 }

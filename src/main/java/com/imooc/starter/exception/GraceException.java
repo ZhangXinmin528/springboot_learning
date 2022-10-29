@@ -1,0 +1,10 @@
+package com.imooc.starter.exception;
+
+/**
+ * 优雅的处理异常，进行调用
+ */
+public class GraceException {
+    public static void display(String errorMsg) {
+        throw new CustomException(errorMsg);
+    }
+}

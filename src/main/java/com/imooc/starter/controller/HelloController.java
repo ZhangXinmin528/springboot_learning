@@ -4,6 +4,7 @@ import com.imooc.starter.entity.Config;
 import com.imooc.starter.entity.Employee;
 import com.imooc.starter.entity.Student;
 import com.imooc.starter.utils.JsonResult;
+import com.imooc.starter.utils.MyAsyncTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +36,9 @@ public class HelloController {
     @Autowired
     private Student student;
 
+    @Autowired
+    private MyAsyncTask myAsyncTask;
+
     @GetMapping("getStudent")
     public Student getStudent() {
         return student;
@@ -46,6 +50,7 @@ public class HelloController {
 
     @GetMapping("getConfig")
     public Config getConfig() {
+        myAsyncTask.publishMsg();
         return config;
     }
 

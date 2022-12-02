@@ -2,6 +2,21 @@ server:
   port: 8090
 
 spring:
+  datasource: #数据源相关的节点
+    type: com.zaxxer.hikari.HikariDataSource  #指定数据源类型
+    driver-class-name: com.mysql.jdbc.Driver #mysql数据库的驱动
+    url: jdbc:mysql://localhost:3306/spring_learning?useUnicode=true&characterEncoding=UTF-8&autoReconect=true
+    username: root
+    password: 123456
+    hikari:
+      connection-timeout: 30000 #等待连接池分配连接的最大时长（毫秒），超过这个时长
+      minimum-idle: 5 #最小连接数
+      maximum-pool-size: 20 #最大连接数
+      auto-commit: true #自动提交
+      idle-timeout: 600000 #连接超时的最大时长（毫秒），超时则被释放
+      max-lifetime: 1800000 #连接的生命时长（毫秒）超时而且没被使用则被释放
+      connection-test-query: SELECT 1
+      pool-name: DateSourceHikariCP #连接池名字
   # 注掉下面代码，则项目首页为：index.html
   #  mvc:
   #    static-path-pattern: /learning/** #设置静态资源前缀
@@ -12,6 +27,7 @@ spring:
 #      location: classpath:banner/pay.jpeg
 #      pixelmode: text
 
+
 #自定义配置
 self:
   custom:
@@ -19,3 +35,21 @@ self:
       sdkKey: abc123
       host: https://blog.csdn.net/zxm528
       port: ${server.port} #类似功能获取基本配置信息
+
+#mybatis相关配置
+mybatis:
+  type-aliases-package: com.imooc.starter.pojo #所有数据库逆向后一一映射的数据类 entity/bean/pojo
+  mapper-locations: classpath:mappers/*.xml #所有mapper文件所在目录
+
+#通用的mapper配置
+mapper:
+  mappers: com.imooc.starter.my.mapper.MyMapper #所有mapper都需要实现接口
+  not-empty: false #在进行数据库操作时，判断一个属性是否为空的时候，是否需要自动追加不为空字符串判断
+  #username!= null 不需要后面 username!=''
+  identity: MYSQL
+
+#分页助手的配置
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
+
